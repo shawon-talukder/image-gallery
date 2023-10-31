@@ -3,6 +3,7 @@ const express = require("express");
 const dotenv = require("dotenv");
 const cors = require("cors");
 const morgan = require("morgan");
+const imageRouter = require("./routes/imageRouter");
 
 // internal dependencies
 
@@ -20,7 +21,7 @@ app.use(express.urlencoded({extended: true}));
 app.use(morgan("short"));
 
 // routes
-
+app.use("/api/v1/image", imageRouter)
 
 // server port
 app.listen(port, ()=>{
