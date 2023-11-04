@@ -67,7 +67,7 @@ imageController.createImage = async(req, res)=>{
 imageController.updateList = async(req, res)=>{
     try {
         // get list from body
-        const list = req.body.items && req.body.items.length > 0 ? req.body.items : false;
+        const list = req.body.items && req.body.items instanceof Array && req.body.items.length > 0 ? req.body.items : false;
 
         if(!list){
             return res.status(400).json({ message: "invalid request!" });
@@ -81,12 +81,11 @@ imageController.updateList = async(req, res)=>{
             );
         }
 
-        return res.status(200).json({message:"reordered Successfully!"});
+        return res.status(200).json({ message:"reordered Successfully!" });
     } catch (error) {
-        return res.status(500).json({message:"There is a server side error!"})
+        return res.status(500).json({ message:"There is a server side error!" });
     }
 }
-
 
 // Export Model
 module.exports = imageController
