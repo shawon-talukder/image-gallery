@@ -1,15 +1,19 @@
 // Dependencies
 const express = require("express");
 
+//internal
+const { 
+    getImages,
+} = require("../controller/imageController");
+
 // Model Scaffolding
 const imageRouter = express.Router();
 
 // Configuration
 
 // Model Structure
-imageRouter.get("/", (req, res)=>{
-    res.send({message:"hello from image"});
-});
+// get all images
+imageRouter.get("/", getImages);
 
 // Export Model
 module.exports = imageRouter
