@@ -61,6 +61,32 @@ imageController.createImage = async(req, res)=>{
     }
 }
 
+// @method: PUT
+// update all data's position one by one
+// @returns: undefined
+imageController.updateList = async(req, res)=>{
+    try {
+        // get list from body
+        const list = req.body.items && req.body.items.length > 0 ? req.body.items : false;
+
+        if(!list){
+            return res.status(400).json({ message: "invalid request!" });
+        }
+
+        // update each items position
+        for(let item of list){
+            await Image.findOneAndUpdate(
+                { _id: item.id },
+                { position: item.position }
+            );
+        }
+
+        return res.status(200).json({message:"reordered Successfully!"});
+    } catch (error) {
+        return res.status(500).json({message:"There is a server side error!"})
+    }
+}
+
 
 // Export Model
 module.exports = imageController
