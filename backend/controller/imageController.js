@@ -87,5 +87,31 @@ imageController.updateList = async(req, res)=>{
     }
 }
 
+// @method: delete
+// delete all data one by one
+// @returns: undefined
+imageController.deleteList = async(req, res)=>{
+    try {
+        // get list from body
+        const list = req.body.items &&  req.body.items instanceof Array &&  req.body.items.length > 0 ? req.body.items : false;
+
+        if(!list){
+            return res.status(400).json({ message: "invalid request!" });
+        }
+
+        // update each items position
+        for(let item of list){
+            await Image.findOneAndDelete(
+                { _id: item }
+            );
+        }
+
+        return res.status(200).json({ message: "Deleted Successfully!" });
+    } catch (error) {
+        return res.status(500).json({ message: "There is a server side error!" })
+    }
+}
+
+
 // Export Model
 module.exports = imageController

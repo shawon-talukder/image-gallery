@@ -5,7 +5,8 @@ const express = require("express");
 const { 
     getImages,
     createImage,
-    updateList
+    updateList,
+    deleteList
 } = require("../controller/imageController");
 
 // Model Scaffolding
@@ -23,6 +24,9 @@ imageRouter.post("/", createImage);
 
 // update position
 imageRouter.put("/reorder", updateList);
+
+// delete images
+imageRouter.delete("/delete", deleteList);
 
 // Export Model
 module.exports = imageRouter
