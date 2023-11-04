@@ -20,7 +20,7 @@ const imageController = {};
 // @returns: array of images
 imageController.getImages = async(req, res)=>{
     try {
-        const images = await Image.find({});
+        const images = await Image.find({}).sort("position");
 
         return res.status(200).json({ images });
     } catch (error) {
