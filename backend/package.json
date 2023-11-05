@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
+    "lint": "eslint .",
+    "build": "yarn install",
+    "start": "yarn run lint && node index.js",
     "dev": "nodemon index.js"
   },
   "author": "shawon talukder",

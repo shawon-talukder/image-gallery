@@ -1,13 +1,13 @@
 // Dependencies
-const express = require("express");
+const express = require('express');
 
-//internal
-const { 
-    getImages,
-    createImage,
-    updateList,
-    deleteList
-} = require("../controller/imageController");
+// internal
+const {
+  getImages,
+  createImage,
+  updateList,
+  deleteList,
+} = require('../controller/imageController');
 
 // Model Scaffolding
 const imageRouter = express.Router();
@@ -16,17 +16,16 @@ const imageRouter = express.Router();
 
 // Model Structure
 // get all images
-imageRouter.get("/", getImages);
-
+imageRouter.get('/', getImages);
 
 // create an image
-imageRouter.post("/", createImage);
+imageRouter.post('/', createImage);
 
 // update position
-imageRouter.put("/reorder", updateList);
+imageRouter.put('/reorder', updateList);
 
 // delete images
-imageRouter.delete("/", deleteList);
+imageRouter.delete('/', deleteList);
 
 // Export Model
-module.exports = imageRouter
+module.exports = imageRouter;

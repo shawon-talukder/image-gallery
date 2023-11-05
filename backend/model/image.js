@@ -10,24 +10,25 @@
  */
 
 // Dependencies
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 // schema structure
-const imageSchema = new mongoose.Schema({
+const imageSchema = new mongoose.Schema(
+  {
     position: {
-        type: Number,
-        required: true
+      type: Number,
+      required: true,
     },
     imageUrl: {
-        type: String,
-        required: true
+      type: String,
+      required: true,
     },
-},
-    { timestamps: true }
+  },
+  { timestamps: true },
 );
 
 // Model Structure
-const Image = mongoose.model("image", imageSchema);
+const Image = mongoose.model('image', imageSchema);
 
 // Export Model
-module.exports = Image
+module.exports = Image;
