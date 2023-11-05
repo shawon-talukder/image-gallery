@@ -101,11 +101,33 @@ imageController.deleteList = async(req, res)=>{
 
         // update each items position
         for(let item of list){
-            await Image.findOneAndDelete(
-                { _id: item }
-            );
-        }
+            // check if the item is in the database
+            const image = await Image.findOne({ _id: item });
 
+            if(!image.imageUrl){
+                return res.status(400).json({ message: "invalid request!" });
+            }
+
+            // delete the image
+            await Image.deleteOne(
+                { _id: image._id }
+            );
+
+            // get remaining images that are greater than the position
+            const remainingImages = await Image.find({ position: {$gt: image.position}}).sort("position").exec();
+            
+            // if there is any update their position
+            if(remainingImages.length > 0){
+                // update each position value for remaining items 
+                // and reduce their position 1 step
+                for(let img of remainingImages){
+                    await Image.updateOne(
+                        {_id: img.id}, 
+                        {$set: {position: img.position - 1 }
+                    });
+                }
+            }
+        }
         return res.status(200).json({ message: "Deleted Successfully!" });
     } catch (error) {
         return res.status(500).json({ message: "There is a server side error!" })
