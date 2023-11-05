@@ -7,9 +7,8 @@
     "node": ">=16.20.1"
   },
   "scripts": {
-    "lint": "eslint .",
     "build": "yarn install",
-    "start": "yarn run lint && node index.js",
+    "start": "npx eslint . && node index.js",
     "dev": "nodemon index.js"
   },
   "author": "shawon talukder",
