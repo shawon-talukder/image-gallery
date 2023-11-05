@@ -26,7 +26,7 @@ imageRouter.post("/", createImage);
 imageRouter.put("/reorder", updateList);
 
 // delete images
-imageRouter.delete("/delete", deleteList);
+imageRouter.delete("/", deleteList);
 
 // Export Model
 module.exports = imageRouter
