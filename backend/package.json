@@ -8,7 +8,7 @@
   },
   "scripts": {
     "build": "yarn install",
-    "start": "npx eslint . && node index.js",
+    "start": "node index.js",
     "dev": "nodemon index.js"
   },
   "author": "shawon talukder",
