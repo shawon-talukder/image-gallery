@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import getProducts, { IProduct } from "../actions/get-products";
+import AddImageButton from "./AddImageButton";
 import ProductItem from "./ProductItem";
 
 const ProductList = () => {
@@ -33,9 +34,7 @@ const ProductList = () => {
   return (
     <div className="bg-white rounded-b px-8 md:px-12 py-4 md:py-8 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-2 md:gap-4">
       {content}
-      <div className="bg-gray-500/20 min-h-[100px] rounded flex justify-center items-center">
-        add image
-      </div>
+      <AddImageButton />
     </div>
   );
 };
