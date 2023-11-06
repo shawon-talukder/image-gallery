@@ -13,11 +13,20 @@ const AddImageButton = () => {
   // upload image to database
   const handleUpload = async () => {
     try {
+      setIsLoading(true);
+
+      // post the imageurl to the server
       await axiosI.post("/", { imageUrl });
+
+      // set image url back to null
       setImageUrl("");
+
+      // reload the page
       window.location.reload();
     } catch (error) {
       console.log("something went wrong");
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -61,6 +70,7 @@ const AddImageButton = () => {
           <>
             <img src={imageUrl} alt={imageUrl} className="h-32 w-32" />
             <button
+              disabled={isLoading}
               onClick={handleUpload}
               className="absolute bg-purple-600 bottom-1 z-50 rounded text-white/80 px-4 py-1"
             >
